@@ -1,8 +1,7 @@
 package pl.sda.warmup;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.PrintStream;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -43,20 +42,19 @@ public class Main {
          */
 
         System.out.println("Podaj bok kwadratu");
-        //Scanner scanner = new Scanner(System.in);
-        //int squareSize = scanner.nextInt();
-
-        String squareSizeContents = Files.readString(Path.of("squareSize.txt"));
-        int squareSize = Integer.parseInt(squareSizeContents);
-        BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("square.txt"));
+        PrintStream printStream = System.out;
+        Scanner scanner = new Scanner(Path.of("squareSize.txt"));
+        int squareSize = scanner.nextInt();
+        //int squareSize = Integer.parseInt(squareSizeContents);
+        //BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("square.txt"));
         for (int x = 0; x < squareSize; x++) {
             for (int y = 0; y < squareSize; y++) {
-                bufferedWriter.write("*");
-                //System.out.print("*");
+                //bufferedWriter.write("*");
+                printStream.print("*");
             }
-            bufferedWriter.write("\n");
-            //System.out.println();
+            //bufferedWriter.write("\n");
+            printStream.println();
         }
-        bufferedWriter.close();
+        //bufferedWriter.close();
     }
 }
