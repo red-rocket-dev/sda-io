@@ -1,8 +1,14 @@
 package pl.sda.warmup;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         1. Napisz kod, ktory wypisze w konsoli prostokąt o wymiarach 5 na 6 złożony z gwiazdek (*)
         Kod powinno się dać łatwo zmodyfikować, żeby uzyskać inne wymiary prostokąta
@@ -35,5 +41,22 @@ public class Main {
          *****
 
          */
+
+        System.out.println("Podaj bok kwadratu");
+        //Scanner scanner = new Scanner(System.in);
+        //int squareSize = scanner.nextInt();
+
+        String squareSizeContents = Files.readString(Path.of("squareSize.txt"));
+        int squareSize = Integer.parseInt(squareSizeContents);
+        BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of("square.txt"));
+        for (int x = 0; x < squareSize; x++) {
+            for (int y = 0; y < squareSize; y++) {
+                bufferedWriter.write("*");
+                //System.out.print("*");
+            }
+            bufferedWriter.write("\n");
+            //System.out.println();
+        }
+        bufferedWriter.close();
     }
 }
